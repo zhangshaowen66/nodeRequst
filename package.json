@@ -1,0 +1,26 @@
+{
+  "name": "noderequst",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "iconv-lite": "^0.6.2",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangshaowen66/nodeRequst.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangshaowen66/nodeRequst/issues"
+  },
+  "homepage": "https://github.com/zhangshaowen66/nodeRequst#readme"
+}
