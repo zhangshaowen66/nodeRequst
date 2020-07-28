@@ -1,6 +1,8 @@
 const fs =  require('fs') //文件读写库
 const request = require("request");//request请求库
-let cont = `import {$axios} from './requset';`
+let cont = `import axios from 'axios';
+import './axios.js';
+`
 request({
     url: "http://wbs.test.szvoc.net:9090/v2/api-docs",//你要请求的地址
     method: "get",//请求方法 post get
@@ -16,12 +18,12 @@ request({
         for (let keys in body.paths)  {
             cont += `
                 export function _${keys.replace('/', '')} (data) {
-                    return $axios('${keys}', data, '${Object.keys(body.paths[keys])[0]}')
+                   return axios.${Object.keys(body.paths[keys])[0]}('${keys}'${(Object.keys(body.paths[keys])[0] == 'get' ? '+ data' : ',')}${(Object.keys(body.paths[keys])[0] == 'post' ? 'data' : '')})
                 }
             `
         }
 
-        fs.writeFileSync('./server.js', cont)
+        fs.writeFileSync('./server2.js', cont)
 
     }
 });
