@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; // Form Data 模式
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 //定义fetch函数，config为配置
 export function fetch(config,base){
     //返回promise对象
@@ -10,7 +8,7 @@ export function fetch(config,base){
         const instance = axios.create({
             //定义请求文件类型
             headers:{
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
             },
             // 请求超时
             timeout: 5000
@@ -33,7 +31,6 @@ export function fetch(config,base){
 
 // 封装调用的接口 getData
 export function $axios(url,data,type = 'post') {
-    // 判断是否登录
     if (type === 'post' && !data) {
         data = {}
     } else if (type === 'get' && !data){
