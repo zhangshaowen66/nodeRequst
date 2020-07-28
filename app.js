@@ -1,5 +1,6 @@
 const fs =  require('fs') //文件读写库
 const request = require("request");//request请求库
+let data = [] // 把这个数组写入excel   
 let cont = `import axios from 'axios';`
 request({
     url: "http://wbs.test.szvoc.net:9090/v2/api-docs",//你要请求的地址
@@ -16,10 +17,11 @@ request({
         for (let keys in body.paths)  {
             cont += `
                 export function _${keys.replace('/', '')} (data) {
-                    return axios.${Object.keys(body.paths[keys])[0]}('${keys}',data)
+                    return axios.${Object.keys(body.paths[keys])[0]}('${keys}'${(Object.keys(body.paths[keys])[0] == 'get' ? '+ data' : ',')}${(Object.keys(body.paths[keys])[0] == 'post' ? 'data' : '')})
                 }
             `
         }
+
         fs.writeFileSync('./server.js', cont)
 
     }
